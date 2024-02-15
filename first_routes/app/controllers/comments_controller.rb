@@ -22,11 +22,19 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-
+        comment = Comment.find_by(id: params[:id])
+        if comment
+            comment.destroy
+            render json: comment
+        else
+            render plain: "id cannot be nil", status: :unprocessable_entity
+        end
     end
 
     private
     def comments_params
         params.require(:comments).permit(:author_id, :artwork_id, :body)
     end
+    
+    
 end
