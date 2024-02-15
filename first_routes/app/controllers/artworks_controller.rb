@@ -1,6 +1,12 @@
 class ArtworksController < ApplicationController
     def index
-        render json: Artwork.all
+        artworks = Artwork.artworks_for_user_id(params[:user_id])
+        if artworks
+            render json: artworks
+        else
+            render json: artworks.errors.full_messages, status: :unprocessable_entity
+        end
+
     end
     def create
         artwork = Artwork.new(user_params)
