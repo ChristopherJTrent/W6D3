@@ -9,7 +9,9 @@
 #   end
 ApplicationRecord.transaction do
     User.destroy_all
-    
+    %w(users artwork_shares artworks).each do |table_name|
+        ActiveRecord::Base.connection.reset_pk_sequence!(table_name)
+    end
     u1 = User.create!(username: 'Arkevorkhat')
     u2 = User.create!(username: 'JennyJang')
 

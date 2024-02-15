@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :users, only: [:create, :destroy, :index, :show, :update]
   resources :artworks, only: [:create, :destroy, :index, :show, :update]
+  resources :artwork_shares, only: [:create, :destroy]
 end
