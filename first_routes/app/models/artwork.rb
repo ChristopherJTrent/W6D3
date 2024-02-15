@@ -12,6 +12,10 @@ class Artwork < ApplicationRecord
     has_many :artwork_shares,
         class_name: :ArtworkShare,
         dependent: :destroy
+    has_many :comments,
+        class_name: :Comment,
+        inverse_of: :artwork,
+        dependent: :destroy
 
     has_many :shared_viewers,
         through: :artwork_shares,
